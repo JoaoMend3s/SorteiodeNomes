@@ -5,18 +5,24 @@
 let sorteador = [];
 function adicionar(nomes) {
   let amigo = document.getElementById("nome-amigo");
+  if (amigo.value == " ") {
+    alert("Escreva um nome para ser adicionado:");
+    return;
+  }  
+    if (sorteador.includes(amigo.value)) {
+        alert('Nome já adicionado!');
+        return;
+    }
+   
   let lista = document.getElementById("lista-amigos");
   sorteador.push(amigo.value);
-  if (amigo.value == " ") {
-    alert("Escreva um nome para ser adicionado!");
+  if (lista.textContent == "") {
+    lista.textContent = amigo.value;
+  } else {
+    lista.textContent = lista.textContent + ", " + amigo.value;
   }
-    if (lista.textContent == "") {
-      lista.textContent = amigo.value;
-    } else {
-      lista.textContent = lista.textContent + ", " + amigo.value;
-    }
-    amigo.value = " ";
-  }
+  amigo.value = " ";
+}
 
 function sortear() {
   embaralhar(sorteador);
